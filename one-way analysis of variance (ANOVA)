@@ -1,0 +1,16 @@
+#Finding assoaction between risk factors and BMI
+#use Anova to determine whether the mean of a dependent variable is the same in two or more unrelated, independent groups
+
+Oneway bmi gender, tab
+Oneway bmi ethnic, tab
+Oneway bmi edugp, tab
+Oneway bmi agegp, tab
+Oneway bmi smoking, tab
+Oneway bmi had1, tab
+Oneway bmi ms, tab
+Oneway bmi poverty4, tab
+Oneway bmi perio, tab
+Oneway bmi haf10, tab
+Oneway bmi hab1, tab
+Oneway bmi haq1, tab
+Oneway bmi hypert, tab
