@@ -1,0 +1,111 @@
+Tab age_cat gender, row
+Tab bmi_cat gender, row
+Tab smoking_cat gender, row
+Tab had1 gender, row
+Tab ms gender, row
+Tab poverty4 gender, row 
+Tab perio gender, row
+Tab haf10 gender, row
+Tab hab1 gender, row
+Tab haq1 gender, row
+Tab hypert gender, row
+Tab gender hypert, row
+Tab age hypert, row
+Tab educ_years hypert, row
+Tab smoking hypert, row
+Drop if bmi>60
+sum if bmi>29.9
+sum if bmi<18.4
+sum if bmi<25 & bmi>18.3
+sum if bmi<30 & bmi>24.9
+Drop dentins
+Drop if ms==.
+Drop if poverty4==.
+Drop if perio==.
+Drop if haq1==.
+Drop if haf10==.
+Drop if had1==.
+Drop if edugp==.
+Tab ethnic
+Tab ethnic hypert, row
+tab had1
+tab had1 hypert, row
+Tab agegp
+Tab agegp hypert, row
+Tab ms
+Tab ms hypert, row
+Tab edugp
+Tab edugp hypert, row
+Tab poverty4
+Tab poverty4 hypert, row
+Tab perio
+Tab perio hypert, row
+Tab haq1
+Tab haq1 hypert, row
+Tab haf10
+Tab haf10 hypert, row
+Tab hab1
+Tab hab1 hypert, row
+Tab educ_years_cat
+Tab educ_years_cat hypert, row
+Tab smoking_cat
+Tab smoking_cat hypert, row
+Tab bmi_cat
+Tab bmi_cat hypert, row
+Tab educ_years
+Gen educ_years_cat=educ_years
+Recode educ_years_cat min/5=0 6/11=1 12/max=2
+Label var educ_years_cat “years of education categories”
+Label define educ_years_catlab 0 “up to 5 years of education” 1 “6-11 years of education” 2 “12-17 years of education”
+Label values educ_years_cat  educ_years_catlab
+Tab educ_years_cat
+Generate smoking_cat=smoking
+Recode smoking_cat 0=0 1/19=1 20/max=2
+Label var smoking_cat “number cigarettes/day categories”
+Label define smoking_catlab 0 “none” 1 “1-19 a day” 2 “20 or more a day”
+Label values smoking_cat smoking_catlab
+Tab smoking_cat
+Generate bmi_cat=bmi
+Recode bmi_cat min/18.3=0 18.4/24.9=1 25/29.9=2 30/max=3
+Label var bmi_cat “bmi categories”
+Label define bmi_catlab 0 “underweight” 1 “normal weight” 2 “overweight” 3 “obese”
+Label values bmi_cat bmi_catlab
+Tab bmi_cat
+Generate age_cat=age
+Recode age_cat min/30=0 31/64=1 65/max=2
+Label var age_cat “age categories”
+Label define age_catlab 0 “up to 30 years old” 1 “31-64 years old” 2 “65 and older”
+Label values age_cat age_catlab
+Tab age_cat
+Tab age_cat hypert, row chi
+Tab ethnic hypert, row chi
+Tab gender hypert, row chi
+Tab educ_years_cat hypert, row chi
+Tab had1 hypert, row chi
+Tab smoking_cat hypert, row chi
+Tab agegp hypert, row chi
+Tab ms hypert, row chi
+Tab edugp hypert, row chi
+Tab poverty4 hypert, row chi
+Tab perio hypert, row chi
+Tab bmi_cat hypert, row chi
+Tab haf10 hypert, row chi
+Tab hab1 hypert, row chi
+Tab haq1 hypert, row chi
+Tab agegp hypert if gender==1, chi
+Tab agegp hypert if gender==2, chi
+Tab educ_years_cat hypert if gender==1, chi
+Tab educ_years_cat hypert if gender==2, chi
+Tab ethnic gender, row chi
+Tab educ_years_cat gender, row chi
+Tab had1 gender, row chi
+Tab smoking_cat gender, row chi
+Tab agegp gender, row chi
+Tab ms gender, row chi
+Tab edugp gender, row chi
+Tab perio gender, row chi
+Tab haq1 gender, row chi
+Tab bmi_cat gender, row chi
+Tab haf10 gender, row chi
+Tab hab1 gender, row chi
+Tab hypert gender, chi
