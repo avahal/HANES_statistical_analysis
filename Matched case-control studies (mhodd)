@@ -1,0 +1,30 @@
+#Analyse matched case–control studies using mhodds by controlling on the variable used to identify the matched sets
+#Stratification on more than one variable and combine several confounding variables and effect modifiers in one analysis
+
+
+Mhodds hypert gender
+Mhodds hypert ethnic
+Tab gender ethnic, chi
+Mhodds hypert gender, by(ethnic)
+Mhodds hypert gender, by(smoking)
+Mhodds hyper gender, by(edugp)
+Mhodds hyper gender, by(bmi)
+Generate perio_cat=perio
+Recode perio_cat 0=0 ½=1
+Label var perio_cat “perio_binary”
+Label define perio_catlab 0 “mild or no periodontal” 1 “moderate to severe periodontal”
+Label values perio_cat perio_catlab
+Mhodds hyper gender, by(perio_cat)
+Mhodds hyper gender, by(bmi)
+Mhodds hyper gender, by(haf10)
+Mhodds hyper gender, by(hab1)
+Mhodds hyper gender, by(had1)
+Generate agegpbi=agegp
+Recode agegpbi 1/2=0 3/4=1
+Label var agegpbi “age binary”
+Label define agegpbilab 0 “44 and younger” 1 “45 and older”
+Label values agegpbi agegpbilab
+Mhodds hyper gender, by(agegpbi)
+Mhodds hyper gender, by(ms)
+Mhodds hyper gender, by(haq1)
+Mhodds hypert gender hab1, by(perio agegp)
