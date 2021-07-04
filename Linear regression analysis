@@ -1,0 +1,69 @@
+#To examine relationship between gender and hypertension
+#Predictor variables (potential exposure variables) analysed against hypertension using simple linear regression to indicate which should be used in the final model (i.e. which were significantly associated with hypertension). Variables tested for interactions with each other and interactions incorporated into the model. 
+#Final multivariate model was run and the residuals were tested to see how well the model fit the data
+#OR may be overestimating the association (it is a good estimator of the risk ratio when the prevalence of disease is low. But 17.02% of sample had hypertension) so regression model is a more advanced statistical method to confirm the results about association.
+
+#So first do a univariate/simple regression model (to identify variables significantly associated)
+#Then identify significant interaction terms
+#Confirm the overall significance of the categorical variables by Wald’s test
+
+#Then take these variables and interaction terms that were found to be significant and that remained after adjusting for all the variables together and that increased the value of the final model’s adjusted R2 – THESE were included in the multiple linear regression model.
+
+#Then test the ADEQUACY of the model by checking the necessary assumptions:
+#Heteroskedasticity
+#Normality assumption of the continuous variables (histograms, kernel density plots and checks of similar means and medians were used to check for violation of normality e.g. skew and kurtosis)
+#Independence of residuals (we assume this since data was taken from dif individuals)
+#Linear relationship/indicator variable
+
+#Do this by two way scatter plots to show residuals dispersed close to the horizontal axis
+#Visualising the relationship between the exposure and outcome variable (to identify linearity)
+
+#Linear Regression test for individual variable association with BMI and summary of the significant interactions between individual variables and Gender
+
+Sum hypert
+Sum age
+Corr hypert gender
+Regress hypert gender
+Twoway (scatter hypert gender) (line regressionline gender)
+Regress bmi gender
+Regress bmi ethnic
+Regress bmi age
+Regress bmi edugp
+Regress bmi had1
+Regress bmi smoking
+Regress bmi ms
+Regress bmi poverty4
+Regress bmi perio
+Regress bmi hypert
+Regress bmi haf10
+Regress bmi hab1
+Regress bmi haq1
+Predict resid, residuals
+Kdensity resid, normal
+Regress bmi gender ethnic
+Regress bmi gender ethnic, beta
+Regress bmi gender ethnic age
+Regress bmi gender ethnic age, beta
+Regress bmi gender ethnic age educ_years, beta
+Regress bmi gender ethnic age educ_years had1
+Regress bmi gender ethnic age educ_years had1 smoking
+Regress bmi gender ethnic age educ_years had1 smoking, beta
+Regress bmi gender ethnic age educ_years had1 smoking hypert
+Regress bmi gender ethnic age educ_years had1 smoking hypert, beta
+Regress bmi gender ethnic age educ_years had1 smoking hypert haf10
+Regress bmi gender ethnic age educ_years had1 smoking hypert haf10, beta
+
+#Multivariable linear regression model for BMI
+
+Xi:regress bmi gender ethnic age educ_years had1 smoking hypert haf10 hab1
+Xi:regress bmi gender ethnic age educ_years had1 smoking hypert haf10 hab1, beta
+Xi:regress bmi gender ethnic age educ_years had1 smoking hypert haf10 hab1 poverty4
+Xi:regress bmi gender ethnic age educ_years had1 smoking hypert haf10 hab1 poverty4, beta
+Xi:regress bmi gender ethnic age educ_years had1 smoking hypert haf10 hab1 poverty4 haq1
+Xi:regress bmi gender ethnic age educ_years had1 smoking hypert haf10 hab1 poverty4 haq1 beta
+Xi:regress bmi i.gender*age
+Xi:regress bmi i.gender*haf10
+Xi:regress bmi i.gender*haf10, beta
+Xi:regress bmi i.gender*hab1
+Xi:regress bmi i.gender*hab1, beta
+
